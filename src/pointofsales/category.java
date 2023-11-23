@@ -5,6 +5,7 @@
 package pointofsales;
 
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
@@ -12,6 +13,10 @@ import java.util.logging.Logger;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 public class category extends javax.swing.JFrame {
 
@@ -20,6 +25,7 @@ public class category extends javax.swing.JFrame {
      */
     public category() {
         initComponents();
+        table_update();
     }
 
     
@@ -254,6 +260,63 @@ public class category extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+  private void table_update()
+  {
+        try {
+            int c;
+            
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+                pst = con1.prepareStatement ("select * from category");
+                ResultSet rs = pst.executeQuery();
+                
+                ResultSetMetaData rsd = rs.getMetaData();
+                c = rsd.getColumnCount();
+                
+                DefaultTableModel d = (DefaultTableModel)jTable1.getModel();
+                d.setRowCount(0);
+                
+                
+                while(rs.next())
+                {
+                    Vector v2 = new Vector();
+                    
+                    for(int i=1;  i<=c; i++)
+                    {
+                        v2.add(rs.getString("id"));
+                        v2.add(rs.getString("category"));
+                        v2.add(rs.getString("status"));
+                        
+                    }
+                    
+                    d.addRow(v2);
+                }
+                
+                
+                
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+      
+      
+      
+  }
+    
+    
+  
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     String category = txtcat.getText(); 
@@ -338,3 +401,4 @@ public class category extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txtstatus;
     // End of variables declaration//GEN-END:variables
 }
+
