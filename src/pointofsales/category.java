@@ -158,6 +158,11 @@ public class category extends javax.swing.JFrame {
         });
 
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -403,6 +408,45 @@ public class category extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+         DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
+        int selectindex = jTable1.getSelectedRow();
+
+        int id = Integer.parseInt(d1.getValueAt(selectindex, 0).toString());
+        
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to Delete the Record","Warning",JOptionPane.YES_NO_OPTION);
+        
+        if(dialogResult == JOptionPane.YES_OPTION)
+        {
+            try { 
+                Class.forName("com.mysql.jdbc.Driver");
+                 con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+                  pst = con1.prepareStatement("delete from category where id = ?");
+                   pst.setInt(1, id);
+                   pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Category Deletedd");
+                    table_update();
+                    txtcat.setText("");
+                    txtstatus.setSelectedIndex(-1);
+                    txtcat.requestFocus();
+                   
+                   
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
+            
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
