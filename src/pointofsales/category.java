@@ -151,6 +151,11 @@ public class category extends javax.swing.JFrame {
         });
 
         jButton2.setText("Edit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
 
@@ -211,6 +216,11 @@ public class category extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -343,6 +353,56 @@ public class category extends javax.swing.JFrame {
             Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        
+        DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
+        int selectindex = jTable1.getSelectedRow();
+        
+        txtcat.setText(d1.getValueAt(selectindex, 1).toString());
+        txtstatus.setSelectedItem(d1.getValueAt(selectindex, 2).toString());
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
+        int selectindex = jTable1.getSelectedRow();
+
+        int id = Integer.parseInt(d1.getValueAt(selectindex, 0).toString());
+        String category = txtcat.getText(); 
+        String status = txtstatus.getSelectedItem().toString();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+            pst = con1.prepareStatement("update category set category=?,status=? where id= ?");
+            pst.setString(1, category);
+            pst.setString(2, status);
+            pst.setInt(3, id);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Category Updateddd");
+            table_update();
+            txtcat.setText("");
+            txtstatus.setSelectedIndex(-1);
+            txtcat.requestFocus();
+            
+            
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
