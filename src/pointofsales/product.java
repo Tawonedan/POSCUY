@@ -71,19 +71,6 @@ public class product extends javax.swing.JFrame {
         }
         
         }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -449,7 +436,7 @@ public class product extends javax.swing.JFrame {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+                con1 = DriverManager.getConnection("jdbc:mysql://localhost/poscuy","root","");
                 pst = con1.prepareStatement ("select * from category");
                 ResultSet rs = pst.executeQuery();
                 txtcat.removeAllItems();
@@ -457,14 +444,8 @@ public class product extends javax.swing.JFrame {
                 while(rs.next())
                 {
                   
-                    txtcat.addItem(new CategoryItem (rs.getInt(1),rs.getString(2)));
-                    
-                    
-                    
+                    txtcat.addItem(new CategoryItem (rs.getInt(1),rs.getString(2)));   
                 }
-                
-                
-                
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -477,7 +458,7 @@ public class product extends javax.swing.JFrame {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+                con1 = DriverManager.getConnection("jdbc:mysql://localhost/poscuy","root","");
                 pst = con1.prepareStatement ("select * from brand");
                 ResultSet rs = pst.executeQuery();
                 txtbrand.removeAllItems();
@@ -486,34 +467,13 @@ public class product extends javax.swing.JFrame {
                 {
                   
                     txtbrand.addItem(new BrandItem (rs.getInt(1),rs.getString(2)));
-                    
-                    
-                    
                 }
-                
-                
-                
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
   private void table_update()
@@ -523,8 +483,8 @@ public class product extends javax.swing.JFrame {
             
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
-                pst = con1.prepareStatement ("select * from brand");
+                con1 = DriverManager.getConnection("jdbc:mysql://localhost/poscuy","root","");
+                pst = con1.prepareStatement ("select p.id,p.product,p.description,c.category,b.brand,p.cost_price,p.retail_price,p.qty,p.barcode,p.status from product p, category c, brand b where p.cat_id = c.id and p.brand_id = b.id");
                 ResultSet rs = pst.executeQuery();
                 
                 ResultSetMetaData rsd = rs.getMetaData();
@@ -532,8 +492,6 @@ public class product extends javax.swing.JFrame {
                 
                 DefaultTableModel d = (DefaultTableModel)jTable1.getModel();
                 d.setRowCount(0);
-                
-                
                 while(rs.next())
                 {
                     Vector v2 = new Vector();
@@ -541,9 +499,15 @@ public class product extends javax.swing.JFrame {
                     for(int i=1;  i<=c; i++)
                     {
                         v2.add(rs.getString("id"));
+                        v2.add(rs.getString("product"));
+                        v2.add(rs.getString("description"));                        
+                        v2.add(rs.getString("category"));
                         v2.add(rs.getString("brand"));
+                        v2.add(rs.getString("cost_price"));
+                        v2.add(rs.getString("retail_price"));
+                        v2.add(rs.getString("qty"));
+                        v2.add(rs.getString("barcode"));
                         v2.add(rs.getString("status"));
-                        
                     }
                     
                     d.addRow(v2);
@@ -603,7 +567,7 @@ public class product extends javax.swing.JFrame {
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Product Added");
-            
+            table_update();
             txtpro.setText("");
             txtdesc.setText("");
             txtcat.setSelectedIndex(-1);
