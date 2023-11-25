@@ -224,10 +224,7 @@ public class pos extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Product code", "Product Name", "Price", "Qty", "Total"
@@ -355,88 +352,72 @@ public class pos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-  private void table_update()
-  {
-        try {
-            int c;
-            
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
-                // pst = con1.prepareStatement ("select * from brand");
-                // ResultSet rs = pst.executeQuery();
-                
-                ResultSetMetaData rsd = rs.getMetaData();
-                c = rsd.getColumnCount();
-                
-                DefaultTableModel d = (DefaultTableModel)jTable1.getModel();
-                d.setRowCount(0);
-                
-                
-                while(rs.next())
-                {
-                    Vector v2 = new Vector();
-                    
-                    for(int i=1;  i<=c; i++)
-                    {
-                        v2.add(rs.getString("id"));
-                        v2.add(rs.getString("brand"));
-                        v2.add(rs.getString("status"));
-                        
-                    }
-                    
-                    d.addRow(v2);
-                }
-                
-                
-                
-                
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-      
-      
-      
-  }
-    
-    
-  
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    String brand = txtprocode.getText(); 
-    
+    private void pos() 
+    {
+    String name = txtprocode.getText();
+        
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
-            // pst = con1.prepareStatement("insert into brand(brand, status)values(?,?)");
-            // pst.setString(1, brand);
-            // pst.setString(2, status);
-            // pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Brand Added");
+            insert = con1.prepareStatement("select * from product where barcode=?");
+            insert .setString(1, name);
+            rs = insert.executeQuery();  
             
-            txtprocode.setText("");
-           
-            txtprocode.requestFocus();
-            
-            
-            // TODO add your handling code here:
+            while(rs.next())
+            {
+               int currentqty;
+               
+               currentqty = rs.getInt("qty");
+               
+               int price = Integer.parseInt(txtprice.getText());
+               int qtynew = Integer.parseInt(txtqty.getText());
+               
+               int tot =  price * qtynew;
+               
+               if(qtynew >= currentqty)
+               {
+                  JOptionPane.showMessageDialog(this, "Avaible Product" + " = " +currentqty);
+                  JOptionPane.showMessageDialog(this, "Qty is not enough");                   
+                   
+               }
+               else 
+               {
+               
+                   DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+                   model.addRow(new Object[]
+                   {
+                      txtprocode.getText(),
+                      txtproname.getText(),
+                      txtprice.getText(),
+                      txtqty.getText(),
+                      tot,
+                       
+                   });
+               
+                   txtprocode.setText("");
+                   txtproname.setText("");
+                   txtprice.setText("");
+                   txtqty.setText("");
+                  
+               }
+               
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    
+    }
+    
+    
+  
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+        pos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
