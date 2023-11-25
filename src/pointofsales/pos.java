@@ -7,6 +7,7 @@ package pointofsales;
 
 
 import java.awt.event.KeyEvent;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -279,6 +282,11 @@ public class pos extends javax.swing.JFrame {
         jLabel15.setText("Balance");
 
         jButton3.setText("Pay Invoice");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -510,6 +518,74 @@ public class pos extends javax.swing.JFrame {
                    txtsub.setText(Integer.toString(sum));
                
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void sales() 
+    {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        
+        
+        String subtot = txtsub.getText();
+        String pay = txtpay.getText();
+        String bal = txtbal.getText();
+        int lastinsetid = 0;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+            
+            String query = "insert into sales(date,subtotal,pay,balance)values(?,?,?,?)";
+            
+            insert = con1.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+            
+            
+            insert.setString(1, date);
+            insert.setString(2, subtot);
+            insert.setString(3, pay);
+            insert.setString(4, bal);
+            insert.executeUpdate();
+            ResultSet genteratedKeyResult = insert.getGeneratedKeys();
+            
+            
+            if(genteratedKeyResult.next())
+            {
+                lastinsetid = genteratedKeyResult.getInt(1);
+            }
+            JOptionPane.showMessageDialog(this, lastinsetid);
+            
+            
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        int pay = Integer.parseInt(txtpay.getText());
+        int subtotal = Integer.parseInt(txtsub.getText());
+        
+        int bal = pay - subtotal;
+        
+        txtbal.setText(String.valueOf(bal));
+        
+        sales();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
