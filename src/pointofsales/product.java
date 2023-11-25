@@ -26,11 +26,64 @@ public class product extends javax.swing.JFrame {
     public product() {
         initComponents();
         table_update();
+        category();
+        brand();
     }
 
     
     Connection con1;
     PreparedStatement pst;
+    
+    
+    public class CategoryItem
+    {
+        
+        int id;
+        String name;
+        
+        
+        public CategoryItem(int id,String name)
+        {
+           this.id = id;
+           this.name = name;
+        }
+        public String toString()
+        {
+           return name;
+        }
+        
+        }
+    public class BrandItem
+    {
+        
+        int id;
+        String name;
+        
+        
+        public BrandItem(int id,String name)
+        {
+           this.id = id;
+           this.name = name;
+        }
+        public String toString()
+        {
+           return name;
+        }
+        
+        }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,8 +114,8 @@ public class product extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdesc = new javax.swing.JTextArea();
-        txtcat = new javax.swing.JComboBox<>();
-        txtbrand = new javax.swing.JComboBox<>();
+        txtcat = new javax.swing.JComboBox();
+        txtbrand = new javax.swing.JComboBox();
         txtcostp = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtstatus = new javax.swing.JComboBox<>();
@@ -91,6 +144,11 @@ public class product extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Product");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,9 +236,17 @@ public class product extends javax.swing.JFrame {
         txtdesc.setRows(5);
         jScrollPane2.setViewportView(txtdesc);
 
-        txtcat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtcat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcatActionPerformed(evt);
+            }
+        });
 
-        txtbrand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtbrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbrandActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Status");
@@ -238,26 +304,24 @@ public class product extends javax.swing.JFrame {
                     .addComponent(txtretailp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel16)
-                                    .addComponent(txtqty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
-                                    .addComponent(txtcat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel17)
-                                    .addComponent(txtbarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtqty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtcat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtbarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -380,6 +444,77 @@ public class product extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void category()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+                pst = con1.prepareStatement ("select * from category");
+                ResultSet rs = pst.executeQuery();
+                txtcat.removeAllItems();
+                
+                while(rs.next())
+                {
+                  
+                    txtcat.addItem(new CategoryItem (rs.getInt(1),rs.getString(2)));
+                    
+                    
+                    
+                }
+                
+                
+                
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    private void brand()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+                con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
+                pst = con1.prepareStatement ("select * from brand");
+                ResultSet rs = pst.executeQuery();
+                txtbrand.removeAllItems();
+                
+                while(rs.next())
+                {
+                  
+                    txtbrand.addItem(new CategoryItem (rs.getInt(1),rs.getString(2)));
+                    
+                    
+                    
+                }
+                
+                
+                
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
   private void table_update()
   {
@@ -557,6 +692,18 @@ public class product extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtproActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void txtbrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbrandActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbrandActionPerformed
+
+    private void txtcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -622,8 +769,8 @@ public class product extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtbarcode;
-    private javax.swing.JComboBox<String> txtbrand;
-    private javax.swing.JComboBox<String> txtcat;
+    private javax.swing.JComboBox txtbrand;
+    private javax.swing.JComboBox txtcat;
     private javax.swing.JTextField txtcostp;
     private javax.swing.JTextArea txtdesc;
     private javax.swing.JTextField txtpro;
