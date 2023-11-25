@@ -485,7 +485,7 @@ public class product extends javax.swing.JFrame {
                 while(rs.next())
                 {
                   
-                    txtbrand.addItem(new CategoryItem (rs.getInt(1),rs.getString(2)));
+                    txtbrand.addItem(new BrandItem (rs.getInt(1),rs.getString(2)));
                     
                     
                     
@@ -573,20 +573,45 @@ public class product extends javax.swing.JFrame {
   
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    String brand = txtpro.getText(); 
+    
+        String product = txtpro.getText();
+        String desc = txtdesc.getText();
+        CategoryItem citem = (CategoryItem)txtcat.getSelectedItem();
+        BrandItem britem = (BrandItem)txtbrand.getSelectedItem();
+        String cprice = txtcostp.getText();
+        String rprice = txtretailp.getText();
+        String qty = txtqty.getText();
+        String barcode = txtbarcode.getText();
+        
+        
+    
     String status = txtstatus.getSelectedItem().toString();
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
-            pst = con1.prepareStatement("insert into brand(brand, status)values(?,?)");
-            pst.setString(1, brand);
-            pst.setString(2, status);
+            pst = con1.prepareStatement("insert into product(product,description,cat_id,brand_id,cost_price,retail_price,qty,barcode,status)values(?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, product);
+            pst.setString(2, desc);
+            pst.setInt(3, citem.id);
+            pst.setInt(4, britem.id);
+            pst.setString(5, cprice);
+            pst.setString(6, rprice);
+            pst.setString(7, qty);
+            pst.setString(8, barcode);
+            pst.setString(9, status);
+
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Brand Added");
+            JOptionPane.showMessageDialog(null,"Product Added");
             
             txtpro.setText("");
+            txtdesc.setText("");
+            txtcat.setSelectedIndex(-1);
+            txtbrand.setSelectedIndex(-1);
+            txtcostp.setText("");
+            txtretailp.setText("");
+            txtqty.setText("");
+            txtbarcode.setText("");
             txtstatus.setSelectedIndex(-1);
             txtpro.requestFocus();
             
