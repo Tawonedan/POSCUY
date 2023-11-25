@@ -595,7 +595,14 @@ public class product extends javax.swing.JFrame {
         int selectindex = jTable1.getSelectedRow();
         
         txtpro.setText(d1.getValueAt(selectindex, 1).toString());
-        txtstatus.setSelectedItem(d1.getValueAt(selectindex, 2).toString());
+        txtdesc.setText(d1.getValueAt(selectindex, 2).toString());
+        txtcat.setSelectedItem(d1.getValueAt(selectindex, 3).toString());
+        txtbrand.setSelectedItem(d1.getValueAt(selectindex, 4).toString());
+        txtcostp.setText(d1.getValueAt(selectindex, 5).toString());
+        txtretailp.setText(d1.getValueAt(selectindex, 6).toString());
+        txtqty.setText(d1.getValueAt(selectindex, 7).toString());
+        txtbarcode.setText(d1.getValueAt(selectindex, 8).toString());
+        txtstatus.setSelectedItem(d1.getValueAt(selectindex, 9).toString());
         
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -606,21 +613,50 @@ public class product extends javax.swing.JFrame {
         int selectindex = jTable1.getSelectedRow();
 
         int id = Integer.parseInt(d1.getValueAt(selectindex, 0).toString());
-        String brand = txtpro.getText(); 
-        String status = txtstatus.getSelectedItem().toString();
+        String product = txtpro.getText();
+        String desc = txtdesc.getText();
+        CategoryItem citem = (CategoryItem)txtcat.getSelectedItem();
+        BrandItem britem = (BrandItem)txtbrand.getSelectedItem();
+        String cprice = txtcostp.getText();
+        String rprice = txtretailp.getText();
+        String qty = txtqty.getText();
+        String barcode = txtbarcode.getText();
+        
+        
+    String status = txtstatus.getSelectedItem().toString();
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
-            pst = con1.prepareStatement("update brand set brand=?,status=? where id= ?");
-            pst.setString(1, brand);
-            pst.setString(2, status);
-            pst.setInt(3, id);
+            pst = con1.prepareStatement("update product set product=?,description=?,cat_id=?,brand_id=?,cost_price=?,retail_price=?,qty=?,barcode=?,status=? where id= ?");
+            pst.setString(1, product);
+            pst.setString(2, desc);
+            pst.setInt(3, citem.id);
+            pst.setInt(4, britem.id);
+            pst.setString(5, cprice);
+            pst.setString(6, rprice);
+            pst.setString(7, qty);
+            pst.setString(8, barcode);
+            pst.setString(9, status);
+            
+            
+            
+            
+            
+            
+            pst.setInt(10, id);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Brand Updateddd");
+            JOptionPane.showMessageDialog(null,"Product Updateddd");
             table_update();
             txtpro.setText("");
+            txtdesc.setText("");
+            txtcat.setSelectedIndex(-1);
+            txtbrand.setSelectedIndex(-1);
+            txtcostp.setText("");
+            txtretailp.setText("");
+            txtqty.setText("");
+            txtbarcode.setText("");
             txtstatus.setSelectedIndex(-1);
             txtpro.requestFocus();
             
@@ -653,12 +689,27 @@ public class product extends javax.swing.JFrame {
             try { 
                 Class.forName("com.mysql.jdbc.Driver");
                  con1 = DriverManager.getConnection("jdbc:mysql://localhost/POSCUY","root","");
-                  pst = con1.prepareStatement("delete from brand where id = ?");
+                  pst = con1.prepareStatement("delete from product where id = ?");
                    pst.setInt(1, id);
                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null,"Brand Deletedd");
+                    JOptionPane.showMessageDialog(null,"Product Deletedd");
                     table_update();
                     txtpro.setText("");
+                    txtdesc.setText("");
+                    txtcat.setSelectedIndex(-1);
+                    txtbrand.setSelectedIndex(-1);
+                    txtcostp.setText("");
+                    txtretailp.setText("");
+                    txtqty.setText("");
+                    txtbarcode.setText("");
+                    txtstatus.setSelectedIndex(-1);
+                    txtpro.requestFocus();
+                    
+                    
+                    
+                    
+                    
+                    
                     txtstatus.setSelectedIndex(-1);
                     txtpro.requestFocus();
                    
