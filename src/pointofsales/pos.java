@@ -550,9 +550,56 @@ public class pos extends javax.swing.JFrame {
             
             if(genteratedKeyResult.next())
             {
-                lastinsetid = genteratedKeyResult.getInt(1);
+                lastinsetid = genteratedKeyResult.getInt(1);                
+            }    
+
+            
+            int rows = jTable1.getRowCount();
+            
+            
+            String query1 = "insert into sales_product(sales_id,product_id,sell_price,qty,total)values(?,?,?,?,?)";
+            insert = con1.prepareStatement(query1);
+            
+            String product_id="";
+            String price="";
+            String qty="";
+            int total=0;
+            
+            for(int i = 0; i<jTable1.getRowCount(); i++)
+            {   
+                
+                product_id = (String)jTable1.getValueAt(i, 0);
+                price = (String)jTable1.getValueAt(i, 2);
+                qty = (String)jTable1.getValueAt(i, 3);
+                total = (int)jTable1.getValueAt(i, 4);
+                
+                insert.setInt(1, lastinsetid);
+                insert.setString(2, product_id);
+                insert.setString(3, price);
+                insert.setString(4, qty);
+                insert.setInt(5, total);
+                insert.executeUpdate();
+                
             }
-            JOptionPane.showMessageDialog(this, lastinsetid);
+            
+            String query3 = "update product set qty= qty-? where barcode=?";
+            insert = con1.prepareStatement(query3);
+            
+             for(int i = 0; i<jTable1.getRowCount(); i++)
+            {   
+                
+                product_id = (String)jTable1.getValueAt(i, 0);
+                qty = (String)jTable1.getValueAt(i, 3);
+                
+                insert.setString(1, qty);
+                insert.setString(2, product_id);
+                insert.execute();
+                
+            }
+            
+             
+            insert.addBatch();
+            JOptionPane.showMessageDialog(this, "Recordered Saved");
             
             
 
