@@ -7,6 +7,7 @@ package pointofsales;
 
 
 import java.awt.event.KeyEvent;
+import java.awt.print.PrinterException;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -615,6 +616,20 @@ public class pos extends javax.swing.JFrame {
     }
     
     
+    public void print()
+    {
+        String sub = txtsub.getText();
+        String pay = txtpay.getText();
+        String bal = txtbal.getText();
+        
+        try {
+            new print(sub,pay,bal,jTable1.getModel()).setVisible(true);
+        } catch (PrinterException ex) {
+            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
     
     
     
@@ -629,7 +644,7 @@ public class pos extends javax.swing.JFrame {
         int bal = pay - subtotal;
         
         txtbal.setText(String.valueOf(bal));
-        
+        print();
         sales();
         
     }//GEN-LAST:event_jButton3ActionPerformed
