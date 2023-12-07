@@ -19,7 +19,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class brand extends javax.swing.JFrame {
-
+    // test
     /**
      * Creates new form category
      */
