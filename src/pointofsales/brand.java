@@ -68,7 +68,7 @@ public class brand extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Category");
+        jLabel1.setText("Kategori");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -78,7 +78,7 @@ public class brand extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Brand");
+        jLabel2.setText("Merek");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -88,7 +88,7 @@ public class brand extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Product");
+        jLabel3.setText("Produk");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -98,7 +98,7 @@ public class brand extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Pos");
+        jLabel4.setText("POS");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -108,7 +108,7 @@ public class brand extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cashier");
+        jLabel5.setText("Kasir");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -119,7 +119,7 @@ public class brand extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Exit");
+        jLabel6.setText("Keluar");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel6.setOpaque(true);
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,20 +167,20 @@ public class brand extends javax.swing.JFrame {
         );
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel7.setText("Brand");
+        jLabel7.setText("Merek");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel8.setText("POS CUY");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Brand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Merek", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        jLabel9.setText("Brand");
+        jLabel9.setText("Merek");
 
         jLabel10.setText("Status");
 
-        txtstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "DeActive" }));
+        txtstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif", "DeAktif" }));
 
-        jButton1.setText("Add");
+        jButton1.setText("Tambah");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -194,7 +194,7 @@ public class brand extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Delete");
+        jButton3.setText("Hapus");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -211,16 +211,16 @@ public class brand extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(10, 10, 10)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addComponent(txtbrand, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                    .addComponent(txtstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtbrand))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +249,7 @@ public class brand extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ID", "Brand", "Status"
+                "ID", "Merek", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -290,7 +290,7 @@ public class brand extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                                 .addGap(27, 27, 27))))))
         );
         layout.setVerticalGroup(
@@ -381,7 +381,7 @@ public class brand extends javax.swing.JFrame {
             pst.setString(1, brand);
             pst.setString(2, status);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Brand Added");
+            JOptionPane.showMessageDialog(null,"Merek Ditambahkan");
             
             txtbrand.setText("");
             txtstatus.setSelectedIndex(-1);
@@ -426,7 +426,7 @@ public class brand extends javax.swing.JFrame {
             pst.setString(2, status);
             pst.setInt(3, id);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Brand Updateddd");
+            JOptionPane.showMessageDialog(null,"Merek DiPerbarui");
             table_update();
             txtbrand.setText("");
             txtstatus.setSelectedIndex(-1);
@@ -454,7 +454,7 @@ public class brand extends javax.swing.JFrame {
 
         int id = Integer.parseInt(d1.getValueAt(selectindex, 0).toString());
         
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to Delete the Record","Warning",JOptionPane.YES_NO_OPTION);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menghapus merek berikut?","Warning",JOptionPane.YES_NO_OPTION);
         
         if(dialogResult == JOptionPane.YES_OPTION)
         {
@@ -464,7 +464,7 @@ public class brand extends javax.swing.JFrame {
                   pst = con1.prepareStatement("delete from brand where id = ?");
                    pst.setInt(1, id);
                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null,"Brand Deletedd");
+                    JOptionPane.showMessageDialog(null,"Merek Dihapus");
                     table_update();
                     txtbrand.setText("");
                     txtstatus.setSelectedIndex(-1);

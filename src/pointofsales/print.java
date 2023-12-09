@@ -36,7 +36,8 @@ public class print extends javax.swing.JFrame {
         txtprint.setText(txtprint.getText()+ "************* PosCuy **************\n");
         txtprint.setText(txtprint.getText()+ "\n");
         txtprint.setText(txtprint.getText()+ "***************************\n");
-        txtprint.setText(txtprint.getText()+ "Product" + "\t"+"Price" + "\t" + "Total");
+        txtprint.setText(txtprint.getText()+ "Product" + "          "+"Price" + "          " + "Total" + "\n");
+        txtprint.setText(txtprint.getText()+ "********************************************\n");
         
         for(int i = 0; i< tableModel.getRowCount(); i++)
         {
@@ -44,7 +45,7 @@ public class print extends javax.swing.JFrame {
             String price = (String) tableModel.getValueAt(i, 2);  
             int total = (int) tableModel.getValueAt(i, 4);
             
-            txtprint.setText(txtprint.getText()+ product + "\t"+price + "\t" + total);
+            txtprint.setText(txtprint.getText()+ product + "          "+price + "          " + total + "\n");
         }
         txtprint.setText(txtprint.getText()+ "\n");
         txtprint.setText(txtprint.getText()+ "\n");
@@ -53,10 +54,13 @@ public class print extends javax.swing.JFrame {
         txtprint.setText(txtprint.getText()+ "     " + "Pay : " + pay + "\n");
         txtprint.setText(txtprint.getText()+ "     " + "Balance : " + bal + "\n");
         
+        txtprint.setText(txtprint.getText()+ "\n");
+        txtprint.setText(txtprint.getText()+ "\n");
         
-        txtprint.setText(txtprint.getText()+ "***************************************\n");
-        txtprint.setText(txtprint.getText()+ "***************************************\n");
-        txtprint.setText(txtprint.getText()+ "Thank you come again*******************\n");
+        
+        txtprint.setText(txtprint.getText()+ "*****Terima Kasih Atas Kunjungannya*****\n");
+        txtprint.setText(txtprint.getText()+ "****************************************\n");
+        txtprint.setText(txtprint.getText()+ "*********Silahkan Datang Lagi :D********\n");
         
         txtprint.print();
     }

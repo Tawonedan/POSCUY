@@ -63,7 +63,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancel");
+        jButton2.setText("Batal");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,6 +129,7 @@ public class login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void login()
@@ -150,7 +151,7 @@ public class login extends javax.swing.JFrame {
             {
                 pos a = new pos();
                 this.hide();
-                a.setVisible(true);
+                new pos(txtuser.getText()).setVisible(true);
             }
             
             else
