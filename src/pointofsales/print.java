@@ -36,7 +36,7 @@ public class print extends javax.swing.JFrame {
         txtprint.setText(txtprint.getText()+ "************* PosCuy **************\n");
         txtprint.setText(txtprint.getText()+ "\n");
         txtprint.setText(txtprint.getText()+ "***************************\n");
-        txtprint.setText(txtprint.getText()+ "Product" + "          "+"Price" + "          " + "Total" + "\n");
+        txtprint.setText(txtprint.getText()+ "Produk" + "          "+"Harga" + "          " + "Total" + "\n");
         txtprint.setText(txtprint.getText()+ "********************************************\n");
         
         for(int i = 0; i< tableModel.getRowCount(); i++)
@@ -50,9 +50,9 @@ public class print extends javax.swing.JFrame {
         txtprint.setText(txtprint.getText()+ "\n");
         txtprint.setText(txtprint.getText()+ "\n");
         
-        txtprint.setText(txtprint.getText()+ "     " + "SubTotal : " + sub + "\n");
-        txtprint.setText(txtprint.getText()+ "     " + "Pay : " + pay + "\n");
-        txtprint.setText(txtprint.getText()+ "     " + "Balance : " + bal + "\n");
+        txtprint.setText(txtprint.getText()+ "     " + "Total : " + sub + "\n");
+        txtprint.setText(txtprint.getText()+ "     " + "Bayar : " + pay + "\n");
+        txtprint.setText(txtprint.getText()+ "     " + "Kembali : " + bal + "\n");
         
         txtprint.setText(txtprint.getText()+ "\n");
         txtprint.setText(txtprint.getText()+ "\n");
