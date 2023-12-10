@@ -145,7 +145,7 @@ public class brand extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(3, 3, 3))))
+                            .addGap(0, 0, 0))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -382,7 +382,7 @@ public class brand extends javax.swing.JFrame {
             pst.setString(2, status);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Merek Ditambahkan");
-            
+            table_update();
             txtbrand.setText("");
             txtstatus.setSelectedIndex(-1);
             txtbrand.requestFocus();
@@ -511,10 +511,9 @@ public class brand extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        
-        pos pos = new pos();
+        login l = new login();
         this.hide();
-        pos.setVisible(true);        
+        l.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

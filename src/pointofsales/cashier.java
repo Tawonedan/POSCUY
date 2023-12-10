@@ -399,9 +399,9 @@ public class cashier extends javax.swing.JFrame {
             pst.setString(3, status);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Kasir Ditambahkan");
-            
+            table_update();
             txtuser.setText("");
-            txtpassword.setText("");
+            txtpass.setText("");
             txtstatus.setSelectedIndex(-1);
             txtuser.requestFocus();
             
@@ -552,9 +552,9 @@ public class cashier extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         
-        pos pos = new pos();
+        login l = new login();
         this.hide();
-        pos.setVisible(true);          
+        l.setVisible(true);         
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

@@ -117,6 +117,7 @@ public class product extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1380, 900));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
@@ -786,9 +787,9 @@ public class product extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         
-        pos pos = new pos();
+        login l = new login();
         this.hide();
-        pos.setVisible(true);  
+        l.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

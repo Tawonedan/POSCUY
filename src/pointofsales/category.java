@@ -381,7 +381,7 @@ public class category extends javax.swing.JFrame {
             pst.setString(2, status);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Kategori Ditambahkan");
-            
+            table_update();
             txtcat.setText("");
             txtstatus.setSelectedIndex(-1);
             txtcat.requestFocus();
@@ -511,9 +511,9 @@ public class category extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         
-        pos pos = new pos();
+        login l = new login();
         this.hide();
-        pos.setVisible(true);    
+        l.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
